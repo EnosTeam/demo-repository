@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>KSC_Web_Introduce</title>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
+        <style>
+            h2{
+                color: #F2F2F2;
+                font-size: 80px;
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                text-align: center;
+                border-bottom: 3px solid #8FBFBF;
+                width: 160px;
+                padding-bottom: 0px;
+                margin-bottom: 22px;
+            }
+
+            #info {
+                color: #f2f2f263;
+                font-size: 30px;
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                text-align: left;
+                display: grid;         
+                grid-gap: 3px;
+                transition: color 2s ease;
+                border: #8FBFBF solid none;
+                width: 140px;
+            }
+            
+            #info a{
+                color: #f2f2f263;
+                text-decoration: none;
+            }
+            
+            #post {
+                display: grid;          
+                grid-template-rows: 1fr, 20px ;                       
+                margin-left: 50px;           
+            }
+
+           #info :hover{
+                color: #F2F2F2;
+            }
+           
+
+        </style>
+    </head> 
+    <body>
+        <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
+        <div id="content">
+            <div><a href="{{ url_for('intro') }}">소개</a></div>
+            <div><a href="{{ url_for('index') }}">공지사항</a></div>
+            <div><a href="{{ url_for('noti') }}">게시판</a></div>
+            <div><a href="{{ url_for('inup') }}">Sign inㆍSign up</a></div>
+        </div>
+        <div id="post">
+            <div><h2>소개</h2></div>
+            <div id="info">
+                <div><a href="#">경설컴이란</a></div>
+                <div><a href="#">개발자들</a></div>
+            </div>
+        </div>
+    </body>
+</html>
