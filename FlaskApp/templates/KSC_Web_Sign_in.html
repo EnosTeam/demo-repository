@@ -3,7 +3,7 @@
     <head>
         <title>KSC_Web_Sign_in</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, inital-scale=1.0"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
         <style>
             #LogBox{
@@ -22,7 +22,7 @@
             #ID, #PW{
                 font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
                 font-size: 20px;
-                color: #F2F2F2;
+                color: #FFA500;
                 background-color: #0D0D0D;
                 border: 3.5px solid #8FBFBF;
                 padding: 10px;
@@ -44,6 +44,7 @@
                 height: 30px;
                 width: 100px;
                 padding: 0px;
+                text-decoration: none;
                 cursor: pointer;   
             }
             #enter:hover{
@@ -96,10 +97,10 @@
         </div>
         <div id="LogBox">
             <p><input type="text" name="ID" placeholder=" ID" id="ID", required oninvalid="this.setCustomValidity('ID를 입력하세요.')"></p>
-            <p><input type="text" name="PW" placeholder=" Password" id="PW", onfocus="Down()" oninvalid="this.setCustomValidity('Password 입력하세요.')"></textarea></p>
+            <p><input type="text" name="PW" placeholder=" Password" id="PW", onfocus="Down()" oninvalid="this.setCustomValidity('Password 입력하세요.')"></p>
             <div id="ButtonBox">
                 <input type="submit" name="enter" value="[ Sign in ]" id="enter">
-                <input type="submit" name="creat" value="[ Sign up ]" id="creat">
+                <a href="{{ url_for('Signup') }}" id="creat">[ Sign up ]</a> 
             </div>
         </div>
         <div id="Two">
