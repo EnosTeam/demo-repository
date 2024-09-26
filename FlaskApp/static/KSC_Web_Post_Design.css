@@ -6,11 +6,11 @@ h2{
     border-bottom: 3px solid #8FBFBF;
     width: 280px;
     padding-bottom: 0px;
-    margin-bottom: 22px;
+    margin-bottom: 23px;
 }           
 button {
     display: inline-block;
-    background-color:#0D0D0D;
+    background-color: transparent;
     color: #f2f2f263;
     font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
     text-align: left;
@@ -27,8 +27,8 @@ button {
     margin-left: 50px;           
 }
 button:hover{
-    color: #F2F2F2;
+    color: #F2F2F2 !important;
 }
 #Search{
-    margin-top: 2px;
+    margin-top: 4px;
 }

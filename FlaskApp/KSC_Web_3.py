@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import or_
 app = Flask(__name__, static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -10,6 +11,7 @@ class Post(db.Model):
     letter = db.Column(db.Text, nullable=False)
 with app.app_context():
     db.create_all()
+
 @app.route('/')
 def door():
     return render_template('KSC_Web_Main_New.html')
@@ -69,6 +71,15 @@ def edit_post(post_id):
         db.session.commit()
         return redirect(url_for('post_detail', post_id=post.id))
     return render_template('edit_post.html', post=post)
+
+@app.route('/search', methods=['GET'])
+def search_post():
+    keyword = request.args.get('keyword', '')
+    if keyword:
+        posts = Post.query.filter(or_(Post.title.contains(keyword), Post.letter.contains(keyword))).all()
+    else:
+        posts = Post.query.all() 
+    return render_template('KSC_Web_Post_Search.html', posts=posts, keyword=keyword)
 
 if __name__ == '__main__':
     app.run(debug=True)

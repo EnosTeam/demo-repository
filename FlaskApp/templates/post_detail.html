@@ -3,7 +3,7 @@
     <head>
         <title>{{ post.title }}</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, inital-scale=1.0"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Post_Design.css') }}">
         <style>
@@ -106,11 +106,10 @@
         <div id="post">
             <div><h2>공지사항</h2></div>
             <div><button id="Creat" onclick="Write()">글 작성하기</button></div>
-            <div><button id="Search" onclick="Find()">글 찾아보기</button></div>
         </div>
         <h1 id="T">{{ post.title }}</h1>
         <p id="L">{{ post.letter }}</p>   
-        <a id="Back" href="{{ url_for('index') }}">[ 돌아가기 ]</a>
+        <a id="Back" href="{{ url_for('search_post', keyword=request.args.get('keyword')) }}">[ 돌아가기 ]</a>
         <a id="Modify" href="{{ url_for('edit_post', post_id=post.id) }}">[ 수정하기 ]</a>
         <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
             <input type="submit" id="Del" value="[ 삭제하기 ]" onclick="return confirm('정말 삭제하시겠습니까?');">
