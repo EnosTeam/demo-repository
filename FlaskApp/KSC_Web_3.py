@@ -5,10 +5,14 @@ app = Flask(__name__, static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-class Post(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    letter = db.Column(db.Text, nullable=False)
+    username = db.Column(db.String(100), nullable=False, unique=True)
+    password = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False, unique=True)
+    birth_date = db.Column(db.String(10), nullable=False)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
 with app.app_context():
     db.create_all()
 
@@ -28,8 +32,32 @@ def intro():
 def inup():
     return render_template('KSC_Web_Sign_in.html')
 
-@app.route('/Signup')
+@app.route('/Signup', methods = ['Get', 'Post'])
 def Signup():
+    if request.method == 'POST':
+        # Get form data from the request
+        username = request.form.get('ID')
+        password = request.form.get('PW')
+        email = request.form.get('Mail')
+        birth_date = request.form.get('BR')
+        first_name = request.form.get('FN')
+        last_name = request.form.get('LN')
+
+        # Create a new User object
+        new_user = User(
+            username=username,
+            password=password,  # You should hash the password for security purposes
+            email=email,
+            birth_date=birth_date,
+            first_name=first_name,
+            last_name=last_name
+        )
+        
+        # Add the new user to the database
+        db.session.add(new_user)
+        db.session.commit()
+        
+        return redirect(url_for('Signup'))
     return render_template('KSC_Web_Sign_up.html')
 
 @app.route('/noti')
