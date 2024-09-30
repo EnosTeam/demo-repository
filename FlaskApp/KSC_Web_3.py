@@ -13,6 +13,11 @@ class User(db.Model):
     birth_date = db.Column(db.String(10), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    letter = db.Column(db.Text, nullable=False)
 with app.app_context():
     db.create_all()
 
@@ -32,7 +37,7 @@ def intro():
 def inup():
     return render_template('KSC_Web_Sign_in.html')
 
-@app.route('/Signup', methods = ['Get', 'Post'])
+@app.route('/Signup', methods=['GET', 'POST'])
 def Signup():
     if request.method == 'POST':
         # Get form data from the request
@@ -52,12 +57,13 @@ def Signup():
             first_name=first_name,
             last_name=last_name
         )
-        
+
         # Add the new user to the database
         db.session.add(new_user)
         db.session.commit()
         
-        return redirect(url_for('Signup'))
+        # Redirect to the welcome page with the user's first name
+        return redirect(url_for('welcome', username=first_name))
     return render_template('KSC_Web_Sign_up.html')
 
 @app.route('/noti')
@@ -108,6 +114,10 @@ def search_post():
     else:
         posts = Post.query.all() 
     return render_template('KSC_Web_Post_Search.html', posts=posts, keyword=keyword)
+
+@app.route('/welcome/<username>')
+def welcome(username):
+    return render_template('welcome.html', username=username)
 
 if __name__ == '__main__':
     app.run(debug=True)
