@@ -1,7 +1,8 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for,flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_
 app = Flask(__name__, static_folder='static')
+app.secret_key = 'supersecretkey12345'  # 경설컴 예시 secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -33,9 +34,23 @@ def home():
 def intro():
     return render_template('KSC_Web_introduce.html')
 
-@app.route('/inup')
+@app.route('/inup', methods=['GET', 'POST'])
 def inup():
-    return render_template('KSC_Web_Sign_in.html')
+    if request.method == 'POST':
+        # HTML 폼에서 입력된 ID와 PW 값 가져오기
+        username = request.form['ID']
+        password = request.form['PW']
+        
+        # 데이터베이스에서 해당 유저 검색
+        user = User.query.filter_by(username=username).first()
+        
+        # 유저가 존재하고 비밀번호가 일치하는 경우
+        if user and user.password == password:
+            return redirect(url_for('intro'))  # 홈으로 리다이렉트
+        else:
+            flash('아이디 또는 비밀번호가 잘못되었습니다.', 'danger')  # 경고 메시지 띄우기
+
+    return render_template('KSC_Web_Sign_in.html')  # 로그인 페이지 렌더링
 
 @app.route('/Signup', methods=['GET', 'POST'])
 def Signup():
