@@ -1,66 +1,100 @@
 <!DOCTYPE html> 
 <html lang="kr">
-    <head>
-        <title>KSC_Web_Introduce</title>
-        <meta charset="utf-8">
-        <meta http-equiv="refresh" content="30">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
-        <style>
-            h2 {
-                color: #F2F2F2;
-                font-size: 5vw; /* 반응형 글자 크기 */
-                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
-                text-align: center; /* 중앙 정렬 */
-                border-bottom: 3px solid #8FBFBF;
-                width: fit-content; /* 글자 길이에 맞춰 너비 조정 */
-                padding-bottom: 0px;
-                margin-bottom: 22px;
-            }
+<head>
+    <title>경설컴을 소개합니다</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
 
-            #info {
-                color: #f2f2f263;
-                font-size: 2.5vw; /* 반응형 글자 크기 */
-                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
-                text-align: left; /* 왼쪽 정렬로 변경 */
-                display: grid;         
-                grid-gap: 3px;
-                transition: color 2s ease;
-                border: #8FBFBF solid none;
-                width: fit-content; /* 글자 길이에 맞춰 너비 조정 */
-                margin: 0; /* 중앙 정렬 제거 */
-            }
-            
-            #info a {
-                color: #f2f2f263;
-                text-decoration: none;
-            }
+        #top-section {
+            display: flex;
+            justify-content: space-between; /* 양쪽으로 나누기 */
+            align-items: flex-start; /* 상단 정렬 */
+            padding: 20px; /* 패딩 추가 */
+        }
 
-            #post {
-                display: grid;          
-                grid-template-rows: auto;                       
-                margin-left: 50px; /* 좌측 여백 유지 */
-            }
+        #left-section {
+            width: 30%; /* 왼쪽 영역 너비 30% */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* 왼쪽 정렬 */
+            padding: 10px; /* 내부 여백 추가 */
+            box-sizing: border-box; /* 패딩 포함하여 전체 너비 계산 */
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            margin-left: 50px;
+            margin-top: 50px;
+        }
 
-            #info :hover {
-                color: #F2F2F2; /* 호버 시 색상 변경 */
-            }
-        </style>
-    </head> 
-    <body>
-        <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
-        <div id="content">
-            <div><a href="{{ url_for('intro') }}">소개</a></div>
-            <div><a href="{{ url_for('index') }}">공지사항</a></div>
-            <div><a href="{{ url_for('noti') }}">게시판</a></div>
-            <div><a href="{{ url_for('inup') }}">Sign inㆍSign up</a></div>
-        </div>
-        <div id="post">
-            <div><h2>소개</h2></div>
+        #right-section {
+            width: 70%; /* 오른쪽 영역 너비 70% */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* 왼쪽 정렬 */
+            padding: 20px; /* 패딩 추가 */
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            box-sizing: border-box; /* 패딩 포함하여 전체 너비 계산 */
+        }
+
+        h2 {
+            color: #F2F2F2;
+            font-size: 5vw; /* 반응형 글자 크기 */
+            font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+            text-align: center; /* 중앙 정렬 */
+            border-bottom: 3px solid #8FBFBF;
+            width: fit-content; /* 글자 길이에 맞춰 너비 조정 */
+            padding-bottom: 0px;
+            margin-bottom: 22px;
+        }
+
+        #info {
+            color: #f2f2f263;
+            font-size: 2.5vw; /* 반응형 글자 크기 */
+            font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+            text-align: left; /* 왼쪽 정렬로 변경 */
+            display: grid;         
+            grid-gap: 3px;
+            width: fit-content; /* 글자 길이에 맞춰 너비 조정 */
+            margin: 0; /* 중앙 정렬 제거 */
+        }
+
+        #info a {
+            color: #f2f2f263;
+            text-decoration: none;
+        }
+
+        #info :hover {
+            color: #F2F2F2; /* 호버 시 색상 변경 */
+        }
+    </style>
+</head> 
+<body>
+    <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
+    <div id="content">
+        <div><a href="{{ url_for('intro') }}">소개</a></div>
+        <div><a href="{{ url_for('index') }}">공지사항</a></div>
+        <div><a href="{{ url_for('noti') }}">게시판</a></div>
+        <div><a href="{{ url_for('inup') }}">Sign inㆍSign up</a></div>
+    </div>
+
+    <div id="top-section">
+        <div id="left-section">
+            <h2>소개</h2>
             <div id="info">
                 <div><a href="#">경설컴이란</a></div>
                 <div><a href="#">개발자들</a></div>
             </div>
         </div>
-    </body>
+
+        <div id="right-section">
+            <!-- 오른쪽 부분에 들어갈 내용은 나중에 추가 -->
+        </div>
+    </div>
+</body>
 </html>
