@@ -1,51 +1,50 @@
 <!DOCTYPE html> 
-<html>
+<html lang="kr">
     <head>
         <title>KSC_Web_Introduce</title>
         <meta charset="utf-8">
         <meta http-equiv="refresh" content="30">
-        <meta name="viewport" content="width=device-width, inital-scale=1.0"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
         <style>
-            h2{
+            h2 {
                 color: #F2F2F2;
-                font-size: 80px;
+                font-size: 5vw; /* 반응형 글자 크기 */
                 font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
-                text-align: center;
+                text-align: center; /* 중앙 정렬 */
                 border-bottom: 3px solid #8FBFBF;
-                width: 160px;
+                width: fit-content; /* 글자 길이에 맞춰 너비 조정 */
                 padding-bottom: 0px;
                 margin-bottom: 22px;
             }
 
             #info {
                 color: #f2f2f263;
-                font-size: 30px;
+                font-size: 2.5vw; /* 반응형 글자 크기 */
                 font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
-                text-align: left;
+                text-align: left; /* 왼쪽 정렬로 변경 */
                 display: grid;         
                 grid-gap: 3px;
                 transition: color 2s ease;
                 border: #8FBFBF solid none;
-                width: 140px;
+                width: fit-content; /* 글자 길이에 맞춰 너비 조정 */
+                margin: 0; /* 중앙 정렬 제거 */
             }
             
-            #info a{
+            #info a {
                 color: #f2f2f263;
                 text-decoration: none;
             }
-            
+
             #post {
                 display: grid;          
-                grid-template-rows: 1fr, 20px ;                       
-                margin-left: 50px;           
+                grid-template-rows: auto;                       
+                margin-left: 50px; /* 좌측 여백 유지 */
             }
 
-           #info :hover{
-                color: #F2F2F2;
+            #info :hover {
+                color: #F2F2F2; /* 호버 시 색상 변경 */
             }
-           
-
         </style>
     </head> 
     <body>
