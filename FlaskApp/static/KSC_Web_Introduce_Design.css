@@ -1,10 +1,13 @@
+::selection {
+    background-color:  #f8d0e4;
+}
 h2{
     color: #F2F2F2;
     font-size: 80px;
     font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
     text-align: center;
     border-bottom: 3px solid #8FBFBF;
-    width: 280px;
+    width: 160px;
     padding-bottom: 0px;
     margin-bottom: 23px;
 }           
@@ -21,13 +24,14 @@ button {
     padding: 0%;
     cursor: pointer;
 }
-#post {
-    display: grid;                           
+#intro {
+    display: grid;          
+    grid-template-rows: 1fr, 20px ;                       
     margin-left: 50px;           
 }
 button:hover{
     color: #F2F2F2 !important;
 }
-#Search{
+#Developer{
     margin-top: 4px;
 }
