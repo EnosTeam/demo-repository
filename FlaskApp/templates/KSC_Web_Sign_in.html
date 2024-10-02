@@ -95,14 +95,19 @@
             <div><a href="/noti">게시판</a></div>
             <div><a href="inup">Sign inㆍSign up</a></div>
         </div>
-        <div id="LogBox">
-            <p><input type="text" name="ID" placeholder=" ID" id="ID", required oninvalid="this.setCustomValidity('ID를 입력하세요.')"></p>
-            <p><input type="text" name="PW" placeholder=" Password" id="PW", onfocus="Down()" oninvalid="this.setCustomValidity('Password 입력하세요.')"></p>
-            <div id="ButtonBox">
-                <input type="submit" name="enter" value="[ Sign in ]" id="enter">
-                <a href="{{ url_for('Signup') }}" id="creat">[ Sign up ]</a> 
+       
+        <form method="POST" action="{{ url_for('inup') }}">
+            <div id="LogBox">
+                <p><input type="text" name="ID" placeholder=" ID" id="ID" required oninvalid="this.setCustomValidity('ID를 입력하세요.')"></p>
+                <p><input type="password" name="PW" placeholder=" Password" id="PW" onfocus="Down()" required oninvalid="this.setCustomValidity('Password 입력하세요.')"></p>
+                <div id="ButtonBox">
+                    <!-- Sign In button triggers form submission -->
+                    <input type="submit" name="enter" value="[ Sign in ]" id="enter">
+                    <!-- Sign Up button redirects to the signup page -->
+                    <a href="{{ url_for('Signup') }}" id="creat">[ Sign up ]</a> 
+                </div>
             </div>
-        </div>
+        </form>
         <div id="Two">
             <button class="eye" onclick="Hide(); Close();">
                 <div class="Out">

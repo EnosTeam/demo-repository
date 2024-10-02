@@ -89,10 +89,20 @@
         <div id="index">
             <ul>
                 <li><a href="/i">소개</a></li>
-                <li><a href="/p">공지사항</a</li>
+                <li><a href="/p">공지사항</a></li>
                 <li><a href="/noti">게시판</a></li>
                 <li><a href="inup">Sign inㆍSign up</a></li>
             </ul>
+        </div>
+        <div style="position: absolute; top: 20px; left: 100px;">
+            {% if 'user_id' in session %}
+                <!-- If the user is logged in, display the welcome message and logout link -->
+                <p style="color: white; font-size: 18px;">환영합니다 {{ session['last_name'] }} {{session['first_name'] }} | <a href="{{ url_for('logout') }}" style="color: white; font-size: 18px;">로그아웃</a></p>
+            {% else %}
+                <!-- If the user is not logged in, show the login and signup links -->
+                <a href="{{ url_for('inup') }}">Sign in</a> | 
+                <a href="{{ url_for('Signup') }}">Sign up</a>
+            {% endif %}
         </div>
     </body>
 </html>

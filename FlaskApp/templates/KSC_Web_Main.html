@@ -16,6 +16,17 @@
             <div><a href="/p">공지사항</a></div>
             <div><a href="/noti">게시판</a></div>
             <div><a href="inup">Sign inㆍSign up</a></div>
+             <!-- Show session info (logged-in status) using Jinja2 -->
+             <div style="float: right;">
+                {% if 'username' in session %}
+                    <!-- If the user is logged in, display the welcome message and logout link -->
+                    <p>Welcome, {{ session['username'] }} | <a href="{{ url_for('logout') }}">Logout</a></p>
+                {% else %}
+                    <!-- If the user is not logged in, show the login and signup links -->
+                    <a href="{{ url_for('inup') }}">Sign in</a> | 
+                    <a href="{{ url_for('Signup') }}">Sign up</a>
+                {% endif %}
+            </div>
         </div>
     </body>
 </html>

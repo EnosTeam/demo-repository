@@ -49,6 +49,16 @@
         </style>
     </head> 
     <body>
+        <div style="position: absolute; top: 20px; left: 100px;"></div>
+            {% if 'user_id' in session %}
+                <!-- If the user is logged in, display the welcome message and logout link -->
+                <p style="color: white; font-size: 18px;">환영합니다 {{ session['last_name'] }} {{session['first_name'] }} | <a href="{{ url_for('logout') }}" style="color: white; font-size: 18px;">로그아웃</a></p>
+            {% else %}
+                <!-- If the user is not logged in, show the login and signup links -->
+                <a href="{{ url_for('inup') }}">Sign in</a> | 
+                <a href="{{ url_for('Signup') }}">Sign up</a>
+            {% endif %}
+        </div>
         <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
         <div id="content">
             <div><a href="{{ url_for('intro') }}">소개</a></div>
@@ -56,6 +66,7 @@
             <div><a href="{{ url_for('noti') }}">게시판</a></div>
             <div><a href="{{ url_for('inup') }}">Sign inㆍSign up</a></div>
         </div>
+        
         <div id="post">
             <div><h2>소개</h2></div>
             <div id="info">
