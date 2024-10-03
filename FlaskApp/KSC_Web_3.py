@@ -1,9 +1,14 @@
-from flask import Flask, request, render_template, redirect, url_for, Blueprint
+from flask import Flask, request, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_
+
 app = Flask(__name__, static_folder='static')
+app.secret_key = 'supersecretkey12345'  # 경설컴 예시 secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
+
+
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -33,35 +38,105 @@ def home():
 def intro():
     return render_template('KSC_Web_introduce.html')
 
-@app.route('/inup')
+@app.route('/inup', methods=['GET', 'POST'])
 def inup():
-    return render_template('KSC_Web_Sign_in.html')
+    if request.method == 'POST':
+        # HTML 폼에서 입력된 ID와 PW 값 가져오기
+        username = request.form['ID']
+        password = request.form['PW']
+        
+        # 데이터베이스에서 해당 유저 검색
+        user = User.query.filter_by(username=username).first()
+        
+        # 유저가 존재하고 비밀번호가 일치하는 경우
+        if user and user.password == password:
+            session['user_id'] = user.id
+            session['first_name'] = user.first_name
+            session['last_name'] = user.last_name
+            return redirect(url_for('intro'))  # 홈으로 리다이렉트
+        else:
+            flash('아이디 또는 비밀번호가 잘못되었습니다.', 'danger')  # 경고 메시지 띄우기
 
-@app.route('/Signup', methods = ['Get', 'Post'])
+    return render_template('KSC_Web_Sign_in.html')  # 로그인 페이지 렌더링
+
+@app.route('/Signup', methods=['GET', 'POST'])
 def Signup():
     if request.method == 'POST':
+        # Get form data from the request
         username = request.form.get('ID')
         password = request.form.get('PW')
         email = request.form.get('Mail')
         birth_date = request.form.get('BR')
         first_name = request.form.get('FN')
         last_name = request.form.get('LN')
+
+        # Create a new User object
         new_user = User(
             username=username,
-            password=password, 
+            password=password,  # You should hash the password for security purposes
             email=email,
             birth_date=birth_date,
             first_name=first_name,
             last_name=last_name
         )
+
+        # Add the new user to the database
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('Signup'))
+
+        session['user_id'] = new_user.id
+        session['first_name'] = new_user.first_name
+        session['last_name'] = new_user.last_name
+        
+        # Redirect to the welcome page with the user's first name
+        return redirect(url_for('welcome', username=first_name))
     return render_template('KSC_Web_Sign_up.html')
+
+@app.route('/mypage')
+def mypage():
+    # Ensure user is logged in
+    if 'user_id' in session:
+        # Fetch user information from the database
+        user = User.query.get(session['user_id'])
+
+        return render_template('mypage.html', user=user)  # Pass user data to the template
+    else:
+        flash('Please log in to access your profile.', 'danger')
+        return redirect(url_for('inup'))  # Redirect to login if not logged in
+
+@app.route('/delete_account', methods=['POST'])
+def delete_account():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        # Fetch the user from the database
+        user = User.query.get(user_id)
+
+        if user:
+            # Delete the user from the database
+            db.session.delete(user)
+            db.session.commit()
+
+            # Clear the session after deleting the account
+            session.clear()
+            flash('Your account has been deleted successfully.', 'success')
+            return redirect(url_for('home'))
+    else:
+        flash('You are not logged in.', 'danger')
+        return redirect(url_for('inup'))    
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)  # Clear the login session
+    flash('You have successfully logged out.', 'success')
+    return redirect(url_for('home'))  # Redirect to home page
 
 @app.route('/noti')
 def noti():
     return render_template('KSC_Web_Notice.html')
+
+@app.route('/gallery')
+def gallery():
+    return render_template('gallery.html')    
 
 @app.route('/p')
 def index():
@@ -108,7 +183,9 @@ def search_post():
         posts = Post.query.all() 
     return render_template('KSC_Web_Post_Search.html', posts=posts, keyword=keyword)
 
-
+@app.route('/welcome/<username>')
+def welcome(username):
+    return render_template('welcome.html', username=username)
 
 class Question_2(db.Model):
     id = db.Column(db.Integer, primary_key = True)
