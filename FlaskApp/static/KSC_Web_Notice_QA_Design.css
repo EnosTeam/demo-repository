@@ -8,11 +8,11 @@ h2{
     padding-bottom: 0px;
     margin-bottom: 23px;
 }           
-#QA, #Project{
+button {
     display: inline-block;
     background-color: transparent;
+    font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
     color: #f2f2f263;
-    font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
     text-align: left;
     border: none;
     width: 200px;
@@ -21,12 +21,27 @@ h2{
     padding: 0%;
     cursor: pointer;
 }
-#noti{
-    display: grid;          
-    grid-template-rows: 1fr, 20px ;                       
+#noti {
+    display: grid;                            
     margin-left: 50px;           
 }
-#QA:hover, #Project:hover{
+#noti_name {
+    font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+    color: #FFA500;
+    border: none;
+    width: 200px;
+    text-decoration: none;
+    font-size: 33px;
+    padding: 0%;
+    margin-bottom: 15px;
+}
+#noti_name::before {
+    content: '•';
+    font-size: 24px;
+    color: #FFA500;
+    margin-right: 10px;
+}
+button:hover{
     color: #F2F2F2 !important;
 }
 #Search{
