@@ -20,8 +20,6 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     letter = db.Column(db.Text, nullable=False)
 
-with app.app_context():
-    db.create_all()
 
 @app.route('/')
 def door():
@@ -136,7 +134,8 @@ def noti_QA_q():
 @app.route('/noti_QA/<int:question_id>/detail')
 def noti_QA_q_detail(question_id):
     question = Question_2.query.get_or_404(question_id)
-    return render_template('notice_detail.html', question=question)
+    answers = Answer.query.filter_by(question_id=question_id).all()
+    return render_template('notice_detail.html', question=question, answers=answers)
 
 
 @app.route('/noti_QA/search', methods=['GET'])
@@ -167,5 +166,25 @@ def delete_question(question_id):
     return redirect(url_for('noti_QA'))
 
 
+class Answer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    letter = db.Column(db.Text, nullable=False)
+    question = db.relationship('Question_2', backref=db.backref('answers', lazy=True))
+    question_id = db.Column(db.Integer, db.ForeignKey('question_2.id'), nullable=False)
+    
+@app.route('/noti_QA/<int:question_id>/answer', methods=['GET', 'POST'])
+def submit_answer(question_id):
+    title = request.form.get('title')
+    letter = request.form.get('letter')
+    new_answer = Answer(title=title, letter=letter, question_id=question_id)
+    db.session.add(new_answer)
+    db.session.commit()
+    return redirect(url_for('noti_QA_q_detail', question_id=question_id))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+with app.app_context():
+    db.create_all()
