@@ -1,10 +1,12 @@
 from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_
+
 app = Flask(__name__, static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
@@ -13,10 +15,25 @@ class User(db.Model):
     birth_date = db.Column(db.String(10), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     letter = db.Column(db.Text, nullable=False)
+
+#질문 클래스
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(200), nullable = False)
+    letter = db.Column(db.Text(), nullable = False)
+
+#답변 클래스
+class Answer(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    question_id = db.Column(db.Integer, db.ForeignKey('question.id', ondelete = 'CASCADE'))
+    question = db.relationship('Question', backref = db.backref('answer_set'))
+    letter = db.Column(db.Text(), nullable = False)
+
 with app.app_context():
     db.create_all()
 
