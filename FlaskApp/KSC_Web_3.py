@@ -90,6 +90,7 @@ def index():
     posts = Post.query.all()
     return render_template('KSC_Web_Post.html', posts=posts)
 
+#공지사항
 @app.route('/post', methods=['POST'])
 def post():
     title = request.form.get('title')
@@ -132,3 +133,50 @@ def search_post():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+#게시판
+
+## 질문 생성
+@app.route('/question', methods=['POST'])
+def question_post():
+    title = request.form.get('title')
+    letter = request.form.get('letter')
+    question = Question(title=title, letter=letter)
+    db.session.add(question)
+    db.session.commit()
+    return redirect(url_for('noti'))
+
+## 질문 상세 페이지
+@app.route('/question/detail/<int:question_id>/')
+def question_detail(question_id):
+    question = Question.query.get_or_404(question_id)
+    return render_template('notice_detail.html', question=question)
+
+## 질문 삭제
+@app.route('/question/delete/<int:question_id>', methods=['POST'])
+def delete_question(post_id):
+    question = Question.query.get_or_404(question_id)
+    db.session.delete(question)
+    db.session.commit()
+    return redirect(url_for('noti'))
+
+## 질문 편집
+@app.route('/question/edit/<int:question_id>', methods=['GET', 'POST'])
+def edit_question(question_id):
+    question = Question.query.get_or_404(question_id)
+    if request.method == 'POST':
+        question.subject = request.form['title']
+        question.content = request.form['letter']
+        db.session.commit()
+        return redirect(url_for('question_detail', question_id=post.id))
+    return render_template('edit_notice.html', question=question)    
+
+## 답변 생성
+@app.route('/question/create/<int:question_id>', methods=('POST',))
+def create_answer(question_id):
+    question = Question.query.get_or_404(question_id)
+    letter = request.form['letter']
+    new_answer = Answer(content=content, create_date=datetime.now())
+    question.answer_set.append(new_answer)
+    db.session.commit()
+    return redirect(url_for('noti', question_id=question_id))
