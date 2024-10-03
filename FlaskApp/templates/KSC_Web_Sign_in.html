@@ -6,6 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
         <style>
+            .flash {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .flash.danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .flash.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
             #LogBox{
                 display: grid;
                 grid-template-rows: 1fr, 1fr, 1fr;
@@ -93,16 +110,31 @@
             <div><a href="/i">소개</a></div>
             <div><a href="/p">공지사항</a></div>
             <div><a href="/noti">게시판</a></div>
-            <div><a href="inup">Sign inㆍSign up</a></div>
+            <div><a href="/gallery">자료실</a></div>
         </div>
-        <div id="LogBox">
-            <p><input type="text" name="ID" placeholder=" ID" id="ID", required oninvalid="this.setCustomValidity('ID를 입력하세요.')"></p>
-            <p><input type="text" name="PW" placeholder=" Password" id="PW", onfocus="Down()" oninvalid="this.setCustomValidity('Password 입력하세요.')"></p>
-            <div id="ButtonBox">
-                <input type="submit" name="enter" value="[ Sign in ]" id="enter">
-                <a href="{{ url_for('Signup') }}" id="creat">[ Sign up ]</a> 
+
+         <!-- Flash 메시지 표시 -->
+         {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+           <div id="flash-messages">
+             {% for category, message in messages %}
+               <div class="flash {{ category }}">{{ message }}</div>
+             {% endfor %}
+           </div>
+         {% endif %}
+       {% endwith %}
+
+        <!-- 로그인 폼 -->
+        <form method="POST" action="{{ url_for('inup') }}">
+            <div id="LogBox">
+                <p><input type="text" name="ID" placeholder=" ID" id="ID" required oninvalid="this.setCustomValidity('ID를 입력하세요.')"></p>
+                <p><input type="password" name="PW" placeholder=" Password" id="PW" required oninvalid="this.setCustomValidity('Password를 입력하세요.')"></p>
+                <div id="ButtonBox">
+                    <input type="submit" name="enter" value="[ Sign in ]" id="enter">
+                    <a href="{{ url_for('Signup') }}" id="creat">[ Sign up ]</a> 
+                </div>
             </div>
-        </div>
+        </form>
         <div id="Two">
             <button class="eye" onclick="Hide(); Close();">
                 <div class="Out">

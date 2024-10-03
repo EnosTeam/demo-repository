@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .info {
+            margin: 10px 0;
+        }
+
+        .logout, .delete-account {
+            margin-top: 20px;
+        }
+
+        .logout a, .delete-account button {
+            color: #ff4d4d;
+            text-decoration: none;
+            background-color: #ff4d4d;
+            padding: 10px 15px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-account button {
+            background-color: #ff0000;
+        }
+
+        .delete-account button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Profile, {{ user.first_name }}!</h1>
+
+        <div class="info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Birth Date:</strong> {{ user.birth_date }}</p>
+            <p><strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        </div>
+
+        <div class="logout">
+            <a href="{{ url_for('logout') }}">로그아웃</a>
+        </div>
+
+        <!-- Account Deletion Form -->
+        <div class="delete-account">
+            <form action="{{ url_for('delete_account') }}" method="POST" onsubmit="return confirm('정말로 계정을 삭제하시겠습니까?')">
+                <button type="submit">회원탈퇴</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

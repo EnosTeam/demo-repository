@@ -1,0 +1,85 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>환영합니다!</title>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
+        <style>
+            h1 {
+                font-size: 50px;
+                color: #8FBFBF;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            h2 {
+                color: #F2F2F2;
+                font-size: 80px;
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                text-align: center;
+                border-bottom: 3px solid #8FBFBF;
+                width: 160px;
+                padding-bottom: 0px;
+                margin-bottom: 22px;
+            }
+
+            #info {
+                color: #f2f2f263;
+                font-size: 30px;
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                text-align: left;
+                display: grid;         
+                grid-gap: 3px;
+                transition: color 2s ease;
+                border: #8FBFBF solid none;
+                width: 140px;
+            }
+            
+            #info a {
+                color: #f2f2f263;
+                text-decoration: none;
+            }
+            
+            #post {
+                display: grid;          
+                grid-template-rows: 1fr, 20px ;                       
+                margin-left: 50px;           
+            }
+
+            #info a:hover {
+                color: #F2F2F2;
+            }
+
+            #content {
+                margin: 20px;
+            }
+
+            #content a {
+                margin: 10px;
+                font-size: 20px;
+                color: #8FBFBF;
+                text-decoration: none;
+            }
+
+            #content a:hover {
+                color: #F2F2F2;
+            }
+        </style>
+    </head> 
+    <body>
+        <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
+        <div id="content">
+            <div><a href="{{ url_for('intro') }}">소개</a></div>
+            <div><a href="{{ url_for('index') }}">공지사항</a></div>
+            <div><a href="{{ url_for('noti') }}">게시판</a></div>
+            <div><a href="{{ url_for('gallery') }}">자료실</a></div>
+        </div>
+        <!-- 환영 메시지 표시 영역 -->
+        <h1>{{ username }}님 가입해주셔서 감사합니다!</h1>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{{ url_for('intro') }}" style="font-size: 20px; color: #8FBFBF; text-decoration: none;">홈으로 이동</a>
+        </div>
+    </body>
+</html>
