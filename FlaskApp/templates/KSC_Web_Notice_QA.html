@@ -177,8 +177,8 @@
         </div>
         <div id="Real">
             <ul>
-                {% for question in Questions %}
-                <li><h3><a href="{{ url_for('question.question_detail', question_id=question.id) }}">{{ question.title }}</a></h3></li>
+                {% for question in questions %}
+                <li><h3><a href="{{ url_for('noti_QA_q_detail', question_id=question.id) }}">{{ question.title }}</a></h3></li>
                 {% endfor %}
             </ul>
         </div>

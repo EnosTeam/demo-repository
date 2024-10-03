@@ -65,8 +65,6 @@ def Signup():
 def noti():
     return render_template('KSC_Web_Notice.html')
 
-
-
 @app.route('/p')
 def index():
     posts = Post.query.all()
@@ -113,18 +111,17 @@ def search_post():
     return render_template('KSC_Web_Post_Search.html', posts=posts, keyword=keyword)
 
 
+
 class Question_2(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200), nullable = False)
     letter = db.Column(db.Text(), nullable = False)
-    
-with app.app_context():
-    db.create_all()    
 
 
 @app.route('/noti_QA')
 def noti_QA():
-    return render_template('KSC_Web_Notice_QA.html')
+    questions = Question_2.query.all()
+    return render_template('KSC_Web_Notice_QA.html', questions=questions)
 
 
 @app.route('/noti_QA_q', methods=['POST'])
@@ -137,15 +134,10 @@ def noti_QA_q():
     return redirect(url_for('noti_QA'))
 
 
-
-
-
-# @app.route('/post/<int:post_id>')
-# def noti_QA_q_detail(post_id):
-#     Question = Question_2.query.get_or_404(Question_2_id)
-#     return render_template('post_detail.html', Question=Question)
-
-
+@app.route('/noti_QA/<int:question_id>')
+def noti_QA_q_detail(question_id):
+    question = Question_2.query.get_or_404(question_id)
+    return render_template('notice_detail.html', question=question)
 
 
 
@@ -177,15 +169,6 @@ def noti_QA_q():
 #     else:
 #         posts = Post.query.all() 
 #     return render_template('KSC_Web_Post_Search.html', posts=posts, keyword=keyword)
-
-
-
-
-
-
-
-
-
 
 
 
