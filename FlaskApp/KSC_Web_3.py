@@ -133,43 +133,38 @@ def noti_QA_q():
     db.session.commit()
     return redirect(url_for('noti_QA'))
 
-
-@app.route('/noti_QA/<int:question_id>')
+@app.route('/noti_QA/<int:question_id>/detail')
 def noti_QA_q_detail(question_id):
     question = Question_2.query.get_or_404(question_id)
     return render_template('notice_detail.html', question=question)
 
 
+@app.route('/noti_QA/search', methods=['GET'])
+def search_question():
+     keyword = request.args.get('keyword', '')
+     if keyword:
+         questions = Question_2.query.filter(or_(Question_2.title.contains(keyword), Question_2.letter.contains(keyword))).all()
+     else:
+         questions = Question_2.query.all() 
+     return render_template('KSC_Web_Notice_QA_Search.html', posts=posts, keyword=keyword)
 
+@app.route('/noti_QA/edit/<int:question_id>', methods=['GET', 'POST'])
+def edit_question(question_id):
+    question = Question_2.query.get_or_404(question_id)
+    if request.method == 'POST':
+        question.title = request.form['title']
+        question.letter = request.form['letter']
+        db.session.commit()
+        return redirect(url_for('noti_QA_q_detail', question_id=question.id))
+    
+    return render_template('edit_question.html', question=question)
 
-
-
-# @app.route('/post/delete/<int:post_id>', methods=['POST'])
-# def delete_post(post_id):
-#     post = Post.query.get_or_404(post_id)
-#     db.session.delete(post)
-#     db.session.commit()
-#     return redirect(url_for('index'))
-
-# @app.route('/post/edit/<int:post_id>', methods=['GET', 'POST'])
-# def edit_post(post_id):
-#     post = Post.query.get_or_404(post_id)
-#     if request.method == 'POST':
-#         post.title = request.form['title']
-#         post.letter = request.form['letter']
-#         db.session.commit()
-#         return redirect(url_for('post_detail', post_id=post.id))
-#     return render_template('edit_post.html', post=post)
-
-# @app.route('/search', methods=['GET'])
-# def search_post():
-#     keyword = request.args.get('keyword', '')
-#     if keyword:
-#         posts = Post.query.filter(or_(Post.title.contains(keyword), Post.letter.contains(keyword))).all()
-#     else:
-#         posts = Post.query.all() 
-#     return render_template('KSC_Web_Post_Search.html', posts=posts, keyword=keyword)
-
+@app.route('/noti_QA/delete/<int:question_id>', methods=['POST'])
+def delete_question(question_id):
+    question = Question_2.query.get_or_404(question_id)
+    db.session.delete(question)
+    db.session.commit()
+    return redirect(url_for('noti_QA'))
 
 
 if __name__ == '__main__':
