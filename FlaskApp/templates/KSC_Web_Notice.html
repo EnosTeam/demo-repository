@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="kr">
     <head>
-        <title>KSC_Web_Post</title>
+        <title>KSC_Web_Notice</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, inital-scale=1.0"> 
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
@@ -139,15 +139,16 @@
             <div><a href="{{ url_for('inup') }}">Sign inㆍSign up</a></div>
         </div>
         <div id="post">
-            <div><h2>게시판</h2></div>
+            <div><h2> 게시판</h2></div>
             <div><button id="Creat" onclick="Write()">글 작성하기</button></div>
             <div><button id="Search" onclick="Find()">글 찾아보기</button></div>
+    
         </div>
         <div><button id="Back" onclick="Back()">[ 돌아가기 ]</button></div>
         <div id="title_n">-제목-</div>
         <div id="letter_n">-내용-</div>
         <div id="info">
-            <form action="/post" method="post">
+            <form action="{{ url_for('question_post') }}" method="post">
                 <p><input type="text" name="title" placeholder=" 제목을 입력하세요." id="title", required oninvalid="this.setCustomValidity('제목을 입력하세요.')"></p>
                 <p><textarea name="letter" placeholder=" 내용을 입력하세요." id="letter", required oninvalid="this.setCustomValidity('내용을 입력하세요.')"></textarea></p>
                 <input type="submit" name="send" value="[ 작성완료 ]" id="send">
@@ -155,8 +156,8 @@
         </div>
         <div id="Real">
             <ul>
-                {% for post in posts %}
-                    <li><h3><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h3></li>
+                {% for question in questions %}
+                    <li><h3><a href="{{ url_for('question_detail', question_id=question.id) }}">{{ question.title }}</a></h3></li>
                 {% endfor %}
             </ul>
         </div>

@@ -8,21 +8,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+#공지사항 클래스
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     letter = db.Column(db.Text, nullable=False)
-with app.app_context():
-    db.create_all()
 
 #질문 클래스
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200), nullable = False)
     letter = db.Column(db.Text(), nullable = False)
-    create_date = db.Column(db.DateTime(), nullable = False)
-with app.app_context():
-    db.create_all()    
 
 #답변 클래스
 class Answer(db.Model):
@@ -30,10 +26,10 @@ class Answer(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey('question.id', ondelete = 'CASCADE'))
     question = db.relationship('Question', backref = db.backref('answer_set'))
     letter = db.Column(db.Text(), nullable = False)
-    create_date = db.Column(db.DateTime(), nullable = False)
+
 with app.app_context():
     db.create_all()
-
+    
 # door
 @app.route('/')
 def door():
@@ -115,39 +111,23 @@ def search_post():
 question = Blueprint('question', __name__, url_prefix='/noti')
 
 ## 질문 생성
-@question.route('/post', methods=['POST'])
+@app.route('/question', methods=['POST'])
 def question_post():
     title = request.form.get('title')
     letter = request.form.get('letter')
-    new_question = Question(title=title, letter=letter)
-    db.session.add(new_question)
+    question = Question(title=title, letter=letter)
+    db.session.add(question)
     db.session.commit()
     return redirect(url_for('noti'))
 
-## 답변 생성
-@question.route('/create/<int:question_id>', methods=('POST',))
-def create_answer(question_id):
-    question = Question.query.get_or_404(question_id)
-    letter = request.form['letter']
-    new_answer = Answer(content=content, create_date=datetime.now())
-    question.answer_set.append(new_answer)
-    db.session.commit()
-    return redirect(url_for('noti', question_id=question_id))
-
-## 질문 목록
-@question.route('/list/')
-def _list():
-    question_list = Question.query.order_by(Question.create_date.desc())
-    return render_template('KSC_Web_Notice.html', question_list=question_list)
-
 ## 질문 상세 페이지
-@question.route('/detail/<int:question_id>/')
+@app.route('/question/detail/<int:question_id>/')
 def question_detail(question_id):
     question = Question.query.get_or_404(question_id)
     return render_template('notice_detail.html', question=question)
 
 ## 질문 삭제
-@question.route('/delete/<int:question_id>', methods=['POST'])
+@app.route('/question/delete/<int:question_id>', methods=['POST'])
 def delete_question(post_id):
     question = Question.query.get_or_404(question_id)
     db.session.delete(question)
@@ -155,7 +135,7 @@ def delete_question(post_id):
     return redirect(url_for('noti'))
 
 ## 질문 편집
-@question.route('/edit/<int:question_id>', methods=['GET', 'POST'])
+@app.route('/question/edit/<int:question_id>', methods=['GET', 'POST'])
 def edit_question(question_id):
     question = Question.query.get_or_404(question_id)
     if request.method == 'POST':
@@ -165,7 +145,18 @@ def edit_question(question_id):
         return redirect(url_for('question_detail', question_id=post.id))
     return render_template('edit_notice.html', question=question)    
 
-@question.route('/search', methods=['GET'])
+## 답변 생성
+@app.route('/question/create/<int:question_id>', methods=('POST',))
+def create_answer(question_id):
+    question = Question.query.get_or_404(question_id)
+    letter = request.form['letter']
+    new_answer = Answer(content=content, create_date=datetime.now())
+    question.answer_set.append(new_answer)
+    db.session.commit()
+    return redirect(url_for('noti', question_id=question_id))
+
+'''
+@app.route('/question/search', methods=['GET'])
 def search_question():
     keyword = request.args.get('keyword', '')
     if keyword:
@@ -173,7 +164,7 @@ def search_question():
     else:
         questions = Question.query.all() 
     return render_template('KSC_Web_Notice_Search.html', questions=questions, keyword=keyword)
-
+'''
 
 if __name__ == '__main__':
     app.run(debug=True)

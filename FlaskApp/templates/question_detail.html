@@ -109,9 +109,9 @@
         </div>
         <h1 id="T">{{ question.title }}</h1>
         <p id="L">{{ question.letter }}</p>   
-        <a id="Back" href="{{ url_for('question.search_question', keyword=request.args.get('keyword')) }}">[ 돌아가기 ]</a>
-        <a id="Modify" href="{{ url_for('question.edit_question', question_id=question.id) }}">[ 수정하기 ]</a>
-        <form action="{{ url_for('question.delete_question', question_id=question.id) }}" method="POST">
+        <a id="Back" href="{{ url_for('search_question', keyword=request.args.get('keyword')) }}">[ 돌아가기 ]</a>
+        <a id="Modify" href="{{ url_for('edit_question', question_id=question.id) }}">[ 수정하기 ]</a>
+        <form action="{{ url_for('delete_question', question_id=question.id) }}" method="POST">
             <input type="submit" id="Del" value="[ 삭제하기 ]" onclick="return confirm('정말 삭제하시겠습니까?');">
         </form>
     </body>

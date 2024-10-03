@@ -127,12 +127,12 @@
         <div id="title_n">-질문-</div>
         <div id="letter_n">-내용-</div>
         <div id="info">
-            <form action="{{ url_for('question.edit_question', question_id=question.id) }}" method="POST">
+            <form action="{{ url_for('edit_question', question_id=question.id) }}" method="POST">
                 <p><input type="text" id="title" name="title" value="{{ question.title }}", placeholder=" 질문을 입력하세요.", required oninvalid="this.setCustomValidity('질문을 입력하세요.')"></p> 
                 <p><textarea  id="letter", name="letter", placeholder=" 내용을 입력하세요.", required oninvalid="this.setCustomValidity('내용을 입력하세요.')">{{ question.letter }}</textarea></p>
                 <input type="submit" name="send" value="[ 수정완료 ]" id="Finsh">
             </form>
-        <a href="{{ url_for('question.question_detail', question_id=question.id) }}" id="Back">[ 돌아가기 ]</a>
+        <a href="{{ url_for('question_detail', question_id=question.id) }}" id="Back">[ 돌아가기 ]</a>
         <script>
             window.onload = function() {
             var input = document.getElementById('title');
