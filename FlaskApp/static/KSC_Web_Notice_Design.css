@@ -27,7 +27,8 @@ h2{
 #noti{
     display: grid;          
     grid-template-rows: 1fr, 20px ;                       
-    margin-left: 50px;        
+    margin-left: 50px;
+    margin-top: 30px;        
 }
 #QA:hover, #Project:hover{
     color: #F2F2F2 !important;
