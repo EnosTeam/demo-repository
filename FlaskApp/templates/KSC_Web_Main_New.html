@@ -33,7 +33,7 @@
                 animation-duration: 2.5s; 
                 animation-fill-mode: forwards;
                 transform: translateY(-50%);
-                margin-left: 10px;  
+                margin-left: 15px;  
             }
 
             #title_2 {
@@ -52,7 +52,7 @@
                 animation-fill-mode: forwards;
                 animation-delay: 3s; /* 인덱스의 애니메이션 지연 */
                 text-align: right; /* 오른쪽 정렬 */
-                margin-right: 5px;
+                margin-right: 13px;
             }
 
             ul {
@@ -73,26 +73,8 @@
                 overflow: hidden; /* 선이 잘리지 않도록 설정 */
             }
 
-            /* 호버 효과 추가 */
-            a::after {
-                content: ''; /* 빈 콘텐츠 생성 */
-                position: absolute; /* 절대 위치 설정 */
-                left: 0; /* 왼쪽 정렬 */
-                bottom: 0; /* 아래쪽 정렬 */
-                width: 100%; /* 전체 너비 */
-                height: 2px; /* 선의 두께 */
-                background-color: #01bfbf; /* 선 색상 */
-                transform: translateX(-100%); /* 시작 위치를 왼쪽으로 이동 */
-                transition: transform 0.3s ease; /* 애니메이션 효과 */
-            }
-
-
-            a:hover::after {
-                transform: translateX(0); /* 호버 시 선이 오른쪽으로 나타남 */
-            }
-
             li {
-                font-size: 2.5vw; /* 리스트 글자 크기 조정 */
+                font-size: 2vw; /* 리스트 글자 크기 조정 */
                 color: #FFA500;
             }  
 
@@ -104,6 +86,101 @@
                 from { opacity: 0; }
                 to { opacity: 1; }
             }
+            ul li {
+                line-height: 1.25; /* 텍스트 간격을 조절 */
+            }
+
+            .i::after {
+                content: ''; 
+                position: absolute; 
+                left: 60%; 
+                bottom: 0;
+                width: 0;
+                height: 2px;
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+            .i:hover::after {
+                width: 80%; 
+            }
+            
+            .p::after {
+                content: ''; 
+                position: absolute; 
+                left: 42.5%; 
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf; 
+                transition: width 0.3s ease; 
+            }
+            .p:hover::after {
+                width: 80%; 
+            }
+
+            .noti::after {
+                content: ''; 
+                position: absolute; 
+                left: 51%; 
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+            .noti:hover::after {
+                width: 80%; 
+            }
+
+            .gallery::after {
+                content: ''; 
+                position: absolute; 
+                left: 51%; 
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+            .gallery:hover::after {
+                width: 80%; 
+            }
+
+
+            .inup::after {
+                content: ''; 
+                position: absolute; 
+                left: 0;
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+            .inup:hover::after {
+                width: 100%; 
+            }
+
+
+
+       
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
         </style>   
     </head> 
     <body>
@@ -117,6 +194,7 @@
                 <li><a href="/p" class="p">공지사항&nbsp;&nbsp;📣</a></li>
                 <li><a href="/noti" class="noti">게시판&nbsp;&nbsp;📝 </a></li>
                 <li><a href="/gallery" class="gallery">자료실&nbsp;&nbsp;🗃️</a></li>
+                <li><a href="/inup" class="inup">Sign inㆍSign up&nbsp;&nbsp;🫱🏻‍🫲🏽</a></li>
             </ul>
         </div>
     </body>
