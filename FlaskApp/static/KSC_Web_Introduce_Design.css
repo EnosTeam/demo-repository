@@ -23,6 +23,7 @@ button {
     font-size: 30px;
     padding: 0%;
     cursor: pointer;
+    transition: color 0.3s;
 }
 #intro {
     display: grid;          

@@ -1,10 +1,11 @@
 h2{
     color: #F2F2F2;
-    font-size: 80px;
+    font-size: 5vw;
     font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
     text-align: center;
     border-bottom: 3px solid #8FBFBF;
-    width: 210px;
+    width: fit-content;
+    max-width: 100%;
     padding-bottom: 0px;
     margin-bottom: 23px;
 }           
@@ -16,15 +17,17 @@ h2{
     text-align: left;
     border: none;
     width: 200px;
+    max-width: 100%;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 2.3vw;
     padding: 0%;
     cursor: pointer;
+    transition: color 0.3s;
 }
 #noti{
     display: grid;          
     grid-template-rows: 1fr, 20px ;                       
-    margin-left: 50px;           
+    margin-left: 50px;        
 }
 #QA:hover, #Project:hover{
     color: #F2F2F2 !important;

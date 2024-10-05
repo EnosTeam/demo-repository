@@ -1,13 +1,13 @@
-h2{
+h2 {
     color: #F2F2F2;
-    font-size: 80px;
+    font-size: 5vw; /* 반응형 글자 크기 */
     font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
-    text-align: center;
+    text-align: center; /* 중앙 정렬 */
     border-bottom: 3px solid #8FBFBF;
-    width: 280px;
-    padding-bottom: 0px;
-    margin-bottom: 23px;
-}           
+    width: auto; /* 자동 너비로 설정 */
+    max-width: 100%; /* 최대 너비 설정 */
+    margin-bottom: 18px;
+}
 button {
     display: inline-block;
     background-color: transparent;
@@ -20,10 +20,11 @@ button {
     font-size: 30px;
     padding: 0%;
     cursor: pointer;
+    transition: color 0.3s;
 }
 #post {
     display: grid;                           
-    margin-left: 50px;           
+    margin-left: 20px;          
 }
 button:hover{
     color: #F2F2F2 !important;
