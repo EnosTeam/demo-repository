@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
         <style>
-            .flash {
+        .flash {
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
@@ -128,7 +128,7 @@
         <form method="POST" action="{{ url_for('inup') }}">
             <div id="LogBox">
                 <p><input type="text" name="ID" placeholder=" ID" id="ID" required oninvalid="this.setCustomValidity('ID를 입력하세요.')"></p>
-                <p><input type="password" name="PW" placeholder=" Password" id="PW" required oninvalid="this.setCustomValidity('Password를 입력하세요.')"></p>
+                <p><input type="text" name="PW" placeholder="Password" id="PW" onfocus="Down()" required oninvalid="this.setCustomValidity('Password를 입력하세요.')"></p>
                 <div id="ButtonBox">
                     <input type="submit" name="enter" value="[ Sign in ]" id="enter">
                     <a href="{{ url_for('Signup') }}" id="creat">[ Sign up ]</a> 
