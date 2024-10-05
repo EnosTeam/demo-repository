@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Introduce_Design.css') }}">
         <style>
+            
              #Detail{
                 position: absolute;
                 left: 460px;
@@ -82,15 +83,157 @@
                 margin-top: 8px;
                 line-height: 1.5;
             }
+            
+            /* Existing styles */
+
+            #Detail {
+                position: absolute;
+                left: 460px;
+                top: 135px;
+                display: none;
+            }
+            #Date_1, #Purpose_1,  #Goal_1 {
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 37px;
+                color: #F2F2F2;
+                font-weight: bold;
+                margin-top: 54px;
+            }
+            #Date_1::before, #Purpose_1::before, #Goal_1::before {
+                content: '•';
+                color: #FFA500;
+                margin-right: 10px; 
+                font-size: 30px;
+            }
+            #Date_2, #Purpose_2, #Goal_2 {
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 23px;
+                color: #8FBFBF;
+                margin-top: 8px;
+                line-height: 1.5;
+            }
+            .Goal-item_1 {
+                display: block;
+                margin-bottom: 3px;
+                color: #8FBFBF;
+                font-size: 23px;
+            }
+            .Goal-item_2 {
+                display: block;
+                margin-top: 10px;
+                color: #8FBFBF;
+                font-size: 23px;
+            }
+            #School {
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 57px;
+                color: #F2F2F2;
+                font-weight: bold;
+                position: absolute;
+                left: 460px;
+                top: 330px;
+                display: none;
+            }
+            #People {
+                position: absolute;
+                left: 900px;
+                top: 170px;
+                display: none;
+            }
+            #Major_1, #Major_2,  #Major_3 {
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 37px;
+                color: #F2F2F2;
+                font-weight: bold;
+                margin-top: 54px;
+            }
+            #Major_1::before, #Major_2::before, #Major_3::before {
+                content: '•';
+                color: #FFA500;
+                margin-right: 10px; 
+                font-size: 30px;
+            }
+            #Name_1, #Name_2, #Name_3 {
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 28px;
+                color: #8FBFBF;
+                margin-top: 8px;
+                line-height: 1.5;
+            }
+            
+            /* Position the login info in the upper right corner */
+            #login-info {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                color: white;
+                font-size: 18px;
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+            }
+
+            /* 로그인 섹션의 컨테이너 스타일 */
+            .login-container {
+                display: flex;
+                justify-content: flex-end; /* 오른쪽 정렬 */
+                align-items: center;
+                background-color: #333; /* 다크 배경색 */
+                padding: 10px 20px; /* 내부 여백 */
+                border-radius: 8px; /* 둥근 테두리 */
+                margin: 10px;
+            }
+
+            /* 환영 메시지 스타일 */
+            .welcome-message {
+                color: #f2f2f2; /* 밝은 색상 */
+                font-size: 18px;
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-weight: bold;
+                margin: 0;
+            }
+
+            /* 사용자 이름 강조 */
+            .user-name {
+                color: #ffa500; /* 사용자 이름을 강조하기 위한 주황색 */
+            }
+
+            /* 링크 스타일 */
+            .login-link {
+                color: #f2f2f2; /* 링크 색상 */
+                font-size: 18px;
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-weight: bold;
+                text-decoration: none; /* 밑줄 제거 */
+                transition: color 0.3s ease-in-out; /* 색상 전환 애니메이션 */
+            }
+
+            /* 링크에 마우스 호버 시 색상 변경 */
+            .login-link:hover {
+                color: #007bff;
+            }
         </style>
     </head> 
     <body>
+        <!-- Login info section aligned to the upper right corner -->
+        <div id="login-info" class="login-container">
+            {% if 'user_id' in session %}
+                <!-- 로그인된 경우 환영 메시지와 로그아웃/마이페이지 링크를 표시 -->
+                <p class="welcome-message">
+                    환영합니다!&nbsp;&nbsp;<span class="user-name">{{ session['last_name'] }} {{ session['first_name'] }}님</span> 
+                    <a href="{{url_for('mypage')}}" class="login-link">&nbsp;마이페이지&nbsp;</a> |
+                    <a href="{{url_for('logout') }}" class="login-link">&nbsp;로그아웃</a>
+                </p>
+            {% else %}
+                <!-- 로그인되지 않은 경우 로그인 및 회원가입 링크 표시 -->
+                <a href="{{ url_for('inup') }}" class="login-link">Sign in&nbsp;&nbsp;</a>  |
+                <a href="{{url_for('Signup') }}" class="login-link">&nbsp;&nbsp;Sign up</a>
+            {% endif %}
+        </div>
         <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
         <div id="content">
             <div><a href="{{ url_for('intro') }}">소개</a></div>
             <div><a href="{{ url_for('index') }}" onclick="resetSearch()">공지사항</a></div>
             <div><a href="{{ url_for('noti') }}">게시판</a></div>
-            <div><a href="{{ url_for('inup') }}">Sign inㆍSign up</a></div>
+            <div><a href="{{ url_for('gallery') }}">자료실</a></div>
         </div>
         <div id="intro">
             <div><h2>소개</h2></div>
@@ -148,6 +291,9 @@
                 document.getElementById('Detail').style.display = 'none';
                 document.getElementById('Developer').style.color = '#F2F2F2';
                 document.getElementById('KSC').style.color = ' #f2f2f263';
+            }
+            window.onload = function() {
+                KSC();
             }
         </script>
     </body>
