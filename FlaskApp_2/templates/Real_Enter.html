@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KSC Animation</title>
+        <style>
+            body, html {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #0D0D0D;
+            }
+            #container {
+                text-align: center;
+                justify-content: center;
+            }
+            #ksc {
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                color: #8FBFBF;
+                font-size: 80px;
+                transform: translateY(-90px);    
+            }
+            button {
+                display: inline-block;
+                background-color:#0D0D0D;
+                color: #f2f2f263;
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                border: none;
+                text-decoration: none;
+                font-size: 24px;
+                cursor: pointer;
+                transform: translateY(-90px);    
+            }
+            #Box {
+                position: absolute;
+                width: 100%; 
+                height: 0;
+                bottom: 0;
+                background-color: #2C403E;
+                transition: height 0.3s ease;
+                z-index: 10;
+            }
+            button:hover{
+                color: #F2F2F2;
+            }
+            iframe {
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }    
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1 id="ksc">경설컴</h1>
+            <button id="entry" onclick="motion()">입장하기</button> 
+        </div>
+        <div id="Box"></div>
+        <iframe id="webContent" src=""></iframe>
+        <script>
+            function motion() {
+                document.getElementById('Box').style.height = '100%'; 
+                setTimeout(function() {
+                    document.getElementById('entry').style.display = 'none';
+                    document.getElementById('ksc').style.display = 'none';
+                    document.getElementById('Box').style.height = '0%';
+                    document.getElementById('webContent').src = 'KSC_Web_Main_Enter.html';
+                    document.getElementById('webContent').style.display = 'block'; 
+                }, 300);
+            }
+        </script> 
+    </body>
+</html>

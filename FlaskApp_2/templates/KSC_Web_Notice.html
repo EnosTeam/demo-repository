@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html lang="kr">
+    <head>
+        <title>게시판</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Notice_Design.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_SignBox_Design.css') }}">
+        <style>
+            #QA{
+                margin-bottom: 5px;
+            }
+        </style>
+    </head> 
+    <body>
+        <div id="login-info" class="login-container">
+            {% if 'user_id' in session %}
+                <p class="welcome-message">
+                    환영합니다!&nbsp;&nbsp;<span class="user-name">{{ session['last_name'] }}{{session['first_name'] }}님</span> 
+                    <a href="{{url_for('mypage')}}" class="login-link">&nbsp;마이페이지&nbsp;</a> |
+                    <a href="{{url_for('logout') }}" class="login-link">&nbsp;로그아웃</a>
+                </p>
+            {% else %}
+                <a href="{{ url_for('inup') }}" class="login-link">Sign in&nbsp;&nbsp;</a>  |
+                <a href="{{url_for('Signup') }}" class="login-link">&nbsp;&nbsp;Sign up</a>
+            {% endif %}
+        </div>    
+        <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
+        <div id="content">
+            <div><a href="{{ url_for('intro') }}">소개</a></div>
+            <div><a href="{{ url_for('index') }}">공지사항</a></div>
+            <div><a href="{{ url_for('noti') }}">게시판</a></div>
+            <div><a href="{{ url_for('gallery') }}">자료실</a></div>
+        </div>
+        <div id="noti">
+            <div><h2>게시판</h2></div>
+            <a href="{{ url_for('noti_QA') }}" id="QA">Q&A 게시판</a>
+            <a href="/noti" id="Project">프로젝트 게시판</a>   
+        </div>
+    </body>
+</html>

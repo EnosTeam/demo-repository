@@ -1,0 +1,21 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>KSC_Web_Main</title>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
+        <style>
+        </style>   
+    </head> 
+    <body>
+        <h1><a href="{{ url_for('home') }}">경설컴</a></h1>
+        <div id="content">
+            <div><a href="/i">소개</a></div>
+            <div><a href="/p">공지사항</a></div>
+            <div><a href="/noti">게시판</a></div>
+            <div><a href="inup">Sign inㆍSign up</a></div>
+        </div>
+    </body>
+</html>
