@@ -1,0 +1,217 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>KSC_Web_Sign_up</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <style>
+            ::selection {
+                background-color:  #f8d0e4;
+            }
+            body{
+                width: 100%;
+                height: 100%;
+                background-color: #0D0D0D;
+            }
+            #title_1, #title_2{ 
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 70px;
+                color: #F2F2F2;
+                width: 400px;
+                text-align: center;
+            }
+            #title_sum{ 
+                position: absolute;
+                width: 400px;
+                align-items: center;
+                top: 30%;
+                margin-left: 60px;
+            }
+            #ID, #BR, #Mail{
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 20px;
+                color: #FFA500;
+                background-color: #0D0D0D;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 3.5px solid #8FBFBF;
+                padding-bottom: 10px;
+                padding-left: 5px;
+                width: 530px;
+                text-decoration: none;
+                outline: none;    
+            }
+            #PW, #PWR, #LN, #FN{
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 20px;
+                color: #FFA500;
+                background-color: #0D0D0D;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 3.5px solid #8FBFBF;
+                padding-bottom: 10px;
+                padding-left: 5px;
+                width: 230px;
+                text-decoration: none;
+                outline: none;  
+            }
+            #ID::placeholder,#PW::placeholder,#PWR::placeholder,#LN::placeholder,#FN::placeholder,#BR::placeholder,#Mail::placeholder{
+                font-size: 19px;
+                color: #f2f2f263;
+            }
+            .info_1{
+                display: grid;
+                grid-template-columns: 300px 500px; 
+                gap: 0px;
+                align-items: center; 
+                justify-content: center; 
+                width: 800px;
+            }
+            .info_2{
+                display: grid;
+                grid-template-columns: 300px 500px; 
+                gap: 0px;
+                align-items: center; 
+                justify-content: center; 
+                width: 800px;
+            }
+            .info_3{
+                display: grid;
+                grid-template-columns: 300px 500px; 
+                gap: 0px;
+                align-items: center; 
+                justify-content: center; 
+                width: 800px;
+            }
+            .info_4{
+                display: grid;
+                grid-template-columns: 300px 500px; 
+                gap: 0px;
+                align-items: center; 
+                justify-content: center; 
+                width: 800px;
+            }
+            .info_5{
+                display: grid;
+                grid-template-columns: 300px 500px; 
+                gap: 0px;
+                align-items: center; 
+                justify-content: center; 
+                width: 800px;
+                margin-top: 90px;
+            }
+            #input_1{ 
+                display: grid;
+                grid-template-rows: 1fr 1fr; 
+                height: 150px;
+            }
+            #input_2{ 
+                display: grid;
+                grid-template-rows: 1fr 1fr; 
+                height: 150px;
+                margin-top: 60px;
+            }
+            #input_sum{
+                position: absolute;
+                top: 10%;
+                margin-left: 650px;
+            }            
+            #create{
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                background-color: #0D0D0D;
+                font-size: 20px;
+                color: #f2f2f263;               
+                border: none;     
+                height: 30px;
+                width: 100px;
+                cursor: pointer; 
+            }
+            #Back {
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                background-color: #0D0D0D;
+                font-size: 20px;
+                color: #f2f2f263;               
+                border: none;     
+                height: 30px;
+                width: 100px;
+                padding: 0px;
+                cursor: pointer;   
+                text-decoration: none;
+                padding-top: 4.5px;
+            }
+            #create:hover{
+                color: #FFA500;
+            }
+            #Back:hover{
+                color: #F2F2F2;
+            }
+            #ButtonBox{
+                background-color: transparent;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 10px;
+                justify-items: center; 
+                width: 500px;
+                position: absolute;
+                margin-top: 630px;
+                margin-left: 650px;
+            }
+        </style>   
+    </head> 
+    <body>
+        <div id="title_sum">
+            <div id="title_1"><strong>경설컴</strong></div>
+            <div id="title_2"><strong>가입하기</strong></div>
+        </div>
+        <form id="Sign_up" action="#" method="post">
+            <div id="input_sum">
+                <div id="input_1">
+                    <div class="info_1">
+                        <input type="text" name="ID" placeholder="ID" id="ID", oninvalid="this.setCustomValidity('ID를 입력하세요.')" oninput="setCustomValidity('')" required>
+                    </div>
+                    <div class="info_2">
+                        <input type="password" name="PW" placeholder="Password" id="PW" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$" oninvalid="this.setCustomValidity('대문자, 숫자, 특수문자가 모두 포함된 8자리 이상의 Password를 입력하세요.')"  oninput="setCustomValidity('')" required>
+                        <input type="password" name="PWR" placeholder="Password를 재입력하세요." id="PWR", oninvalid="this.setCustomValidity('입력하신 Password와 다릅니다.')" oninput="setCustomValidity('')" required>
+                    </div>
+                </div>
+                <div id="input_2">
+                    <div class="info_3">
+                        <input type="text" name="BR" placeholder="생년월일을 입력하세요." id="BR" pattern='\d{4}\.\d{2}\.\d{2}' oninvalid="this.setCustomValidity('YYYY.MM.DD의 형식으로 생년월일을 입력하세요.')" oninput="setCustomValidity('')"  required>
+                    </div>
+                    <div class="info_4">
+                        <input type="text" name="LN" placeholder="성" id="LN", required oninvalid="this.setCustomValidity('성을 입력하세요.')" oninput="setCustomValidity('')" required>
+                        <input type="text" name="FN" placeholder="이름" id="FN", oninvalid="this.setCustomValidity('이름을 입력하세요.')" oninput="setCustomValidity('')" required>
+                    </div>
+                </div>
+                <div class="info_5">
+                    <input type="text" name="Mail" placeholder="E-Mail을 입력하세요." id="Mail", required oninvalid="this.setCustomValidity('E-Mail을 입력하세요.')" oninput="setCustomValidity('')" required>
+                </div>
+            </div>
+            <div id="ButtonBox">
+                <a id="Back" href="{{ url_for('InUp.inup') }}">[ 돌아가기 ]</a>
+                <input type="submit" name="send" value="[ Sign up ]" id="create">
+            </div>
+        </form>
+        <script>
+            document.getElementById('Sign_up').addEventListener('submit', function(event) {
+                var pw_1 = document.getElementById('PW');
+                var pwr_1 = document.getElementById('PWR');
+                var pw_2 = pw_1.value;
+                var pwr_2 = pwr_1.value;
+                if (pw_2 !== pwr_2) {
+                    event.preventDefault();
+                    pwr_1.setCustomValidity('입력하신 Password와 다릅니다.');
+                    pwr_1.reportValidity();
+                    pw_1.style.color = '#B22222';
+                    pwr_1.style.color = '#B22222';
+                } else {
+                    pwr_1.setCustomValidity('');
+                    pw_1.style.color = '';
+                    pwr_1.style.color = '';
+                }
+            });
+        </script>
+    </body>
+</html>

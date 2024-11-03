@@ -1,0 +1,65 @@
+h2{
+    color: #F2F2F2;
+    font-size: 80px;
+    font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+    text-align: center;
+    border-bottom: 3px solid #8FBFBF;
+    width: 210px;
+    padding-bottom: 0px;
+    margin-bottom: 23px;
+}           
+button {
+    display: inline-block;
+    background-color: transparent;
+    font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+    color: #f2f2f263;
+    text-align: left;
+    border: none;
+    width: 200px;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 0%;
+    cursor: pointer;
+}
+#noti {
+    display: grid;                            
+    margin-left: 50px;           
+}
+#noti_name {
+    font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+    color: #FFA500;
+    border: none;
+    width: 200px;
+    text-decoration: none;
+    font-size: 33px;
+    padding: 0%;
+    margin-bottom: 15px;
+}
+#noti_name::before {
+    content: '•';
+    font-size: 24px;
+    color: #FFA500;
+    margin-right: 10px;
+}
+button:hover{
+    color: #F2F2F2 !important;
+}
+.Create_2:hover {
+    color: transparent !important;
+}
+#Search{
+    margin-top: 4px;
+}
+#Create_2{
+    display: inline-block;
+    background-color: transparent;
+    font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+    color: transparent;
+    text-align: left;
+    border: none;
+    width: 200px;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 0%;
+    cursor: pointer;
+}
