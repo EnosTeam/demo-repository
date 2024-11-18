@@ -1,5 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, session, Blueprint
-from flask_sqlalchemy import SQLAlchemy
+from flask import request, render_template, redirect, url_for, flash, session, Blueprint
 from sqlalchemy import or_
 from DataBase.KSC_Web_Post_DB import db, Post
 

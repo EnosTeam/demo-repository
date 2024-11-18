@@ -1,6 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, session, Blueprint
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import or_
+from flask import request, render_template, redirect, url_for, flash, session, Blueprint
 from DataBase.KSC_Web_Sign_InUp_DB import db, User
 
 InUp = Blueprint('InUp', __name__)

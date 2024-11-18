@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, session, Blueprint
+from flask import Flask
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = 'supersecretkey12345'
