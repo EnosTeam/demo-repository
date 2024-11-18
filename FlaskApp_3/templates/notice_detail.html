@@ -240,11 +240,9 @@
         <div id="noti">
             <div><h2>게시판</h2></div>
             <div id="noti_name">Q&A 게시판</div>
+                <div><button id="Look" onclick="SA()">답변 보러가기</button></div>
                 {% if 'user_id' in session %}
                     <div><button id="Write" onclick="SW()">답변 작성하기</button></div>
-                    <div><button id="Look" onclick="SA()">답변 보러가기</button></div>
-                {% else %}
-                    <div><button id="Look2" onclick="SA()">답변 보러가기</button></div>
                 {% endif %}
         </div>
         <h1 id="T">{{ question.title }}</h1>
@@ -261,11 +259,14 @@
                 {% endfor %}
             </ul>
         </div>
-        <form action="{{ url_for('Notice.submit_answer', question_id=question.id) }}" method="POST">
-            <p><input type="text" name="title" placeholder="답변 제목을 입력하세요." id="WT" required oninvalid="this.setCustomValidity('답변 제목을 입력하세요.')"></p>
-            <p><textarea name="letter" placeholder="답변 내용을 입력하세요." id="WL" required oninvalid="this.setCustomValidity('답변 내용을 입력하세요.')"></textarea></p>
-            <input type="submit" name="send" value="[ 답변제출 ]" id="Asend">
-        </form>
+        {% if 'user_id' in session %}
+            <form action="{{ url_for('Notice.submit_answer', question_id=question.id) }}" method="POST">
+                <p><input type="text" name="title" placeholder="답변 제목을 입력하세요." id="WT" required oninvalid="this.setCustomValidity('답변 제목을 입력하세요.')"></p>
+                <p><textarea name="letter" placeholder="답변 내용을 입력하세요." id="WL" required oninvalid="this.setCustomValidity('답변 내용을 입력하세요.')"></textarea></p>
+                <input type="submit" name="send" value="[ 답변제출 ]" id="Asend">
+            </form>
+        <!--유저가 아닌 경우 답변 칸이 아예 사라짐, 공백 문제 해결해야 함 -->
+        {% endif %}
         <a id="Back" href="{{ url_for('Notice.search_question', question_id=question.id, keyword=request.args.get('keyword')) }}">[ 돌아가기 ]</a>
         <a id="Modify" href="{{ url_for('Notice.edit_question', question_id=question.id) }}">[ 수정하기 ]</a>
         <form action="{{ url_for('Notice.delete_question', question_id=question.id) }}" method="POST">
