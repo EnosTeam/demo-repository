@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for, flash, session, Blueprint
+from flask import request, render_template, redirect, url_for, Blueprint
 from sqlalchemy import or_
 from DataBase.KSC_Web_Notice_DB import db, Question_2, Answer
 

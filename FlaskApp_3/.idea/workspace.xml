@@ -5,6 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeb6a985-e360-408c-bd69-3d9932e9bceb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/demo-repository.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/FlaskApp_3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KSC_Web_Notice.py" beforeDir="false" afterPath="$PROJECT_DIR$/KSC_Web_Notice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KSC_Web_Post.py" beforeDir="false" afterPath="$PROJECT_DIR$/KSC_Web_Post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/site.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/site.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/KSC_Web_Notice_QA.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/KSC_Web_Notice_QA.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/KSC_Web_Notice_QA_Search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/KSC_Web_Notice_QA_Search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/notice_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/notice_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../instance/site.db" beforeDir="false" afterPath="$PROJECT_DIR$/../instance/site.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +40,7 @@
   "keyToString": {
     "Python.KSC_Web.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "mirim",
+    "git-widget-placeholder": "Merging main",
     "last_opened_file_path": "/Users/marin/marin-Rim_Github/demo-repository/FlaskApp_3"
   }
 }]]></component>
@@ -174,5 +188,8 @@
       <updated>1731485080090</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
