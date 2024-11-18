@@ -243,8 +243,10 @@
         <div id="noti">
             <div><h2>게시판</h2></div>
             <div id="noti_name">Q&A 게시판</div>
-            <div><button id="Create" onclick="Write()">글 작성하기</button></div>  
             <div><button id="Search" onclick="Find()">글 찾아보기</button></div>
+            {% if 'user_id' in session %}
+                <div><button id="Create" onclick="Write()">글 작성하기</button></div>
+            {% endif %}
             <form action="/noti_QA/search" method="GET">
                 <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="{{ keyword }}" onclick="Dot()" pattern=".*\S+.*" oninvalid="this.setCustomValidity('검색어를 입력하세요.')" oninput="setCustomValidity('')" required>
             </form>
