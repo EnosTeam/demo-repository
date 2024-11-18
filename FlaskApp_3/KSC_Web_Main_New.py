@@ -1,6 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for,flash, session, Blueprint
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import or_
+from flask import Flask, render_template, Blueprint
+
 app = Flask(__name__, static_folder='static')
 app.secret_key = 'supersecretkey12345'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'

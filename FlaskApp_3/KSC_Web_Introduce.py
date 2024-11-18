@@ -1,6 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for,flash, session, Blueprint
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import or_
+from flask import render_template, Blueprint
 
 Introduce = Blueprint('Introduce', __name__)
 

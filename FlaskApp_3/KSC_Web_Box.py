@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for,flash, session, Blueprint
+from flask import  render_template, Blueprint
 
 Box = Blueprint('Box', __name__)
 
