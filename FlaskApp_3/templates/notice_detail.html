@@ -240,8 +240,12 @@
         <div id="noti">
             <div><h2>게시판</h2></div>
             <div id="noti_name">Q&A 게시판</div>
-            <div><button id="Write" onclick="SW()">답변 작성하기</button></div>
-            <div><button id="Look" onclick="SA()">답변 보러가기</button></div>  
+                {% if 'user_id' in session %}
+                    <div><button id="Write" onclick="SW()">답변 작성하기</button></div>
+                    <div><button id="Look" onclick="SA()">답변 보러가기</button></div>
+                {% else %}
+                    <div><button id="Look2" onclick="SA()">답변 보러가기</button></div>
+                {% endif %}
         </div>
         <h1 id="T">{{ question.title }}</h1>
         <p id="L">{{ question.letter }}</p> 
