@@ -1,0 +1,122 @@
+<!DOCTYPE html> 
+<html lang="kr">
+    <head>
+        <title>게시판</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Notice_Design.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_SignBox_Design.css') }}">
+        <style>
+            #QA{
+                margin-bottom: 5px;
+            }
+            #Detail {
+                position: relative;
+                top: -250px;
+                left: 35vw;
+            }
+            @media (max-width: 960px) {
+                #Detail {
+                    left: 336px; 
+                }
+            }
+            #Alert_t{
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 37px;
+                color: #F2F2F2;
+                font-weight: bold;
+                margin-top: 54px;
+                margin-left: 0px; 
+            }
+            #Alert_t::before{
+                color: #FFA500;
+                font-size: 30px;
+            }           
+            #Alert_2{
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 23px;
+                color: #8FBFBF;
+                margin-top: 3px;
+                line-height: 1.5;
+            }
+            .Alert_li {
+                list-style: none;
+                font-size: 25px;
+                padding-left: 0px;
+                margin-top: 10px;    
+            }
+            .Alert_li li {
+                position: relative; 
+                padding-left: 20px;
+                color: #8FBFBF;
+                margin-bottom: 3px;
+            }
+            .Alert_li li::before {
+                content: "•"; 
+                position: absolute;
+                left: 0; 
+                top: 0;
+                color: #FFA500;
+                font-size: 25px; 
+            }
+        </style>
+    </head> 
+    <body>
+        <div id="login-info" class="login-container">
+            {% if 'user_id' in session %}
+                <p class="welcome-message">
+                    환영합니다!&nbsp;&nbsp;<span class="user-name">{{ session['last_name'] }}{{session['first_name'] }}님</span> 
+                    <a href="{{url_for('MyPage.mypage')}}" class="login-link">&nbsp;마이페이지&nbsp;</a> |
+                    <a href="{{url_for('MyPage.logout') }}" class="login-link">&nbsp;로그아웃</a>
+                </p>
+            {% else %}
+                <a href="{{ url_for('InUp.inup') }}" class="login-link">Sign in&nbsp;&nbsp;</a>  |
+                <a href="{{url_for('InUp.Signup') }}" class="login-link">&nbsp;&nbsp;Sign up</a>
+            {% endif %}
+        </div>    
+        <h1><a href="{{ url_for('Main.home') }}">경설컴</a></h1>
+        <div id="content">
+            <div><a href="{{ url_for('Introduce.intro') }}">소개</a></div>
+            <div><a href="{{ url_for('Posts.index') }}" onclick="resetSearch()">공지사항</a></div>
+            <div><a href="{{ url_for('Notice.noti') }}">게시판</a></div>
+            <div><a href="{{ url_for('Box.gallery') }}">자료실</a></div>
+        </div>
+        <div id="noti">
+            <div><h2>게시판</h2></div>
+            <a href="{{ url_for('Notice.noti_QA') }}" id="QA">Q&A 게시판</a>
+            <a href="/noti" id="Project">프로젝트 게시판</a>   
+        </div>
+        <div id="Detail">
+            <div id="Alert">
+                <div id="Alert_t">1. 목적</div>
+                <div id="Alert_2">
+                    <ul class="Alert_li">
+                        <li>본 게시판은 경설컴 사용자 간의 정보 공유 및 소통을 목적으로 합니다.</li>
+                        <li>모든 사용자는 서로를 존중하며 건전한 커뮤니티 환경 조성에 협조해 주시기 바랍니다.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="Alert">
+                <div id="Alert_t" style="margin-top: 45px;">2. 게시글 작성 규칙</div>
+                <div id="Alert_2">
+                    <ul class="Alert_li">
+                        <li>게시판 이용은 회원가입 후 로그인을 통해 가능합니다.</li>
+                        <li>각 게시판 주제에 적합한 글을 작성하길 바랍니다.</li>
+                        <li>타인의 저작권을 침해하는 게시물은 삭제될 수 있습니다.</li>
+                        <li>비방, 명예훼손, 허위 사실 유포는 엄격히 금지됩니다.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="Alert">
+                <div id="Alert_t" style="margin-top: 45px;">3. 개인정보 보호</div>
+                <div id="Alert_2"> 
+                    <ul class="Alert_li">
+                        <li>타인의 개인정보를 동의 없이 게시하거나 유출하지 마시길 바랍니다.</li>
+                        <li>본 게시판의 모든 콘텐츠는 관련 법률에 따라 보호되며, 무단 복제 및 배포를 금지합니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

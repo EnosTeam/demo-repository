@@ -1,0 +1,34 @@
+h2{
+    color: #F2F2F2;
+    font-size: 80px;
+    font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+    text-align: center;
+    border-bottom: 3px solid #8FBFBF;
+    width: 280px;
+    padding-bottom: 0px;
+    margin-bottom: 23px;
+}           
+button {
+    display: inline-block;
+    background-color: transparent;
+    color: #f2f2f263;
+    font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+    text-align: left;
+    border: none;
+    width: 200px;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 0%;
+    cursor: pointer;
+}
+#post {
+    display: grid;                           
+    margin-left: 50px;
+    width: 400px;           
+}
+button:hover{
+    color: #F2F2F2 !important;
+}
+#Search{
+    margin-top: 4px;
+}

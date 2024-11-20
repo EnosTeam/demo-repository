@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>환영합니다! {{last_name}}{{ first_name }}님</title>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='KSC_Web_Basic_Design.css') }}">
+        <style>
+            body{
+                background-color: #0D0D0D;
+            }
+            h1 {
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                font-size: 70px;
+                color: #F2F2F2;
+                text-align: center;
+                margin-top: 200px;
+            }
+            .name{
+                color: #FFA500;
+            }
+            #Mes{
+                font-size: 30px;
+                color: #8FBFBF;
+                text-decoration: none;
+                text-align: center;
+                margin-top: 50px;
+            }
+            #Mes a{
+                font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica';
+                text-decoration: none; 
+                color: #8FBFBF;
+                cursor: pointer;
+            }
+        </style>
+    </head> 
+    <body>
+        <div id="Wel">
+            <h1>만나서 반갑습니다! <span class="name">{{last_name}}{{ first_name }}님</span></h1>
+            <div id="Mes"><a href="{{ url_for('InUp.inup') }}">Sign in 페이지로 이동하기</a></div>
+        </div>
+    </body>
+</html>
