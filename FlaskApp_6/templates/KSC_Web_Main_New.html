@@ -1,0 +1,219 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>KSC_Web_Main</title>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeit/5.0.2/typeit.js"></script>
+        <style>
+            body {
+                background-color: #0D0D0D;
+                margin: 0; 
+                display: flex; 
+                justify-content: flex-start; 
+                align-items: center;
+                height: 100vh;
+                padding: 20px;
+                box-sizing: border-box; 
+            }
+
+            #title {
+                display: flex;
+                flex-direction: column; 
+                margin-right: auto;
+            }
+
+            #title_1, #title_2 {
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                font-size: 4.5vw; 
+                color: #F2F2F2;
+                text-decoration: none;
+                opacity: 1;
+                transform: translateY(-50%);
+                margin-left: 15px;  
+            }
+
+            #title_2 {
+                color: #8FBFBF;
+                margin-top: 8px; 
+                animation-delay: 1.5s; 
+            }
+
+            #index {
+                position: absolute; 
+                bottom: 60px; 
+                right: 20px;
+                opacity: 0;
+                animation-name: Show;
+                animation-duration: 1s; 
+                animation-fill-mode: forwards;
+                animation-delay: 3s;
+                text-align: right; 
+                margin-right: 13px;
+            }
+
+            ul {
+                list-style-type: none; 
+                padding: 0; 
+                margin: 0;
+            }
+
+            a {
+                font-family: 'San Francisco', 'Helvetica Neue', Helvetica;
+                font-size: 3vw;
+                color: #f2f2f263; 
+                text-decoration: none;
+                display: block; 
+                margin-bottom: 15px;
+                padding: 10px; 
+                position: relative; 
+                overflow: hidden; 
+            }
+
+            li {
+                font-size: 2vw; 
+            }  
+
+            a:hover {
+                color: #F2F2F2;
+            }
+
+            @keyframes Show {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            ul li {
+                line-height: 1.25; 
+            }
+
+            .i::after {
+                content: ''; 
+                position: absolute; 
+                left: 60%; 
+                bottom: 0;
+                width: 0;
+                height: 2px;
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+            
+            .i:hover::after {
+                width: 80%; 
+            }
+            
+            .p::after {
+                content: ''; 
+                position: absolute; 
+                left: 42.5%; 
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf; 
+                transition: width 0.3s ease; 
+            }
+            
+            .p:hover::after {
+                width: 80%; 
+            }
+
+            .noti::after {
+                content: ''; 
+                position: absolute; 
+                left: 51%; 
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+           
+            .noti:hover::after {
+                width: 80%; 
+            }
+            
+            .gallery::after {
+                content: ''; 
+                position: absolute; 
+                left: 51%; 
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+           
+            .gallery:hover::after {
+                width: 80%; 
+            }
+
+            .inup::after {
+                content: ''; 
+                position: absolute; 
+                left: 0;
+                bottom: 0; 
+                width: 0; 
+                height: 2px; 
+                background-color:  #01bfbf;
+                transition: width 0.3s ease; 
+            }
+            
+            .inup:hover::after {
+                width: 100%; 
+            }
+            
+            #title_1 .Name{
+                color: #FFA500 !important;
+            }
+            
+            .ti-cursor {
+                color:  #FFA500 !important;
+                margin-left: 15px; 
+            }
+        </style>   
+    </head> 
+    <body>
+        <div id="title">
+            {% if 'user_id' in session %}
+                <div id="title_1"><strong><span class="Name">{{ session['last_name'] }}{{session['first_name'] }}님 </span></strong><strong>환영합니다!</strong></div>
+            {% else %}
+                <div id="title_1"><strong>당신을 환영합니다.</strong></div>
+            {% endif %}   
+            <div id="title_2"><strong>이곳은 경설컴입니다.</strong></div>
+        </div>
+        <div id="index">
+            <ul>
+                <li><a href="/i" class="i">소개&nbsp;&nbsp;🧑‍💻</a></li>
+                <li><a href="/p" class="p">공지사항&nbsp;&nbsp;📣</a></li>
+                <li><a href="/noti" class="noti">게시판&nbsp;&nbsp;📝 </a></li>
+                <li><a href="/gallery" class="gallery">자료실&nbsp;&nbsp;🗃️</a></li>
+                <li><a href="/inup" class="inup">Sign inㆍSign up&nbsp;&nbsp;🫱🏻‍🫲🏽</a></li>
+            </ul>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+             new TypeIt('#title_1', {
+                speed: 50,      
+                startDelay: 500, 
+                loop: false,     
+                cursor: true,
+                html: true,       
+                lifeLike: true,    
+            })
+            .go();
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+             new TypeIt('#title_2', {
+                speed: 50,      
+                startDelay: 1500, 
+                loop: false,     
+                cursor: true,     
+                html: true,       
+                lifeLike: true,    
+            })
+            .go();
+        });
+        </script>
+    </body>
+</html>
