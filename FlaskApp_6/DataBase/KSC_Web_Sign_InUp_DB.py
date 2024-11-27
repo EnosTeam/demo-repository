@@ -8,3 +8,5 @@ class User(db.Model):
     birth_date = db.Column(db.String(10), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
+    
+    email_verified = db.Column(db.String(50), default = False)

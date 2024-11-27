@@ -2,7 +2,8 @@ from flask import Flask, request, render_template, redirect, url_for, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-
+from flask_migrate import Migrate
+from flask_migrate import Migrate
 app = Flask(__name__, static_folder='static')
 app.secret_key = 'supersecretkey12345'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///KSC_Web_DataBase.db'
@@ -13,6 +14,8 @@ from DataBase.KSC_Web_DB import db
 db.init_app(app)
 with app.app_context():
     db.create_all()
+
+migrate = Migrate(app, db)
     
 from KSC_Web_Main_New import Main
 app.register_blueprint(Main)
