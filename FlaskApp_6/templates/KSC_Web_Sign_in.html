@@ -135,7 +135,10 @@
                 <p><input type="text" name="PW" placeholder="Password" id="PW" onfocus="Down()" required oninvalid="this.setCustomValidity('Password를 입력하세요.')"></p>
                 <div id="ButtonBox">
                     <input type="submit" name="enter" value="[ Sign in ]" id="enter">
-                    <a href="{{ url_for('InUp.Signup') }}" id="creat">[ Sign up ]</a> 
+                    <a href="{{ url_for('InUp.Signup') }}" id="creat">[ Sign up ]</a>
+                    <a href="{{ url_for('InUp.kakao_login') }}" class="kakao-login">
+                        <img src="{{ url_for('static', filename='images/kakao_login_medium_narrow.png') }}" alt="Kakao Login">
+                    </a> 
                 </div>
             </div>
         </form>
