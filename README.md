@@ -9,13 +9,19 @@
    - 사용자 정보를 입력하여 새로운 계정을 생성하고, 로그인한 사용자만이 접근할 수 있는 기능을 제공합니다.
    - Flask Session을 이용하여 로그인 상태를 유지하며, 로그인된 사용자 정보는 세션 쿠키에 암호화되어 저장됩니다.
 
-2. **게시판 기능**
+2. **공지사항**
+   - 로그인한 사용자만이 공지사항 글을 작성, 수정, 삭제할 수 있습니다.
+   - 로그인과 무관하게 작성된 글을 검색, 확인할 수 있습니다.
+
+3. **게시판 기능**
    - 사용자들이 질문이나 게시물을 작성하고, 수정 및 삭제할 수 있습니다.
    - 게시물 정보는 SQLite 데이터베이스에 저장되며, ORM 라이브러리인 SQLAlchemy를 통해 데이터베이스와 상호작용합니다.
 
-3. **관리자 페이지(추가 예정)**
+3. **관리자 페이지**
+   - 접근 방법: `KSC_Web_DB_Control_2.py`에서 추가 url인 `/admin`을 작성하면 관리자 페이지로 접속됩니다.
    - 관리자는 모든 사용자 정보를 조회하고 관리할 수 있습니다.
    - 특정 사용자의 정보 수정 및 삭제가 가능하며, 권한에 따른 접근 제어가 이루어집니다.
+   - ![img.png](img.png)
 
 ## 사용된 기술 스택
 - **프레임워크**: Flask
@@ -31,19 +37,32 @@
    ```
 2. **애플리케이션 실행**
    ```
-   python KSC_Web_3.py
+   python KSC_Web.py
    ```
 3. **웹사이트 접속**
    로컬 서버 `http://127.0.0.1:5000`에 접속하여 기능을 테스트합니다.
 
 ## 프로젝트 폴더 구조
 ```
-KSC_Web_3.py           # 메인 애플리케이션 파일
-├── static             # 정적 파일 (CSS, JavaScript, 이미지 등)
-├── templates          # HTML 템플릿 파일
-├── site.db            # SQLite 데이터베이스 파일
-└── README.md          # 프로젝트 설명 파일
+FlaskApp_6
+├── DataBase                  # SQLite 데이터베이스
+├── KSC_Web.py                # 메인 애플리케이션 파일
+├── KSC_Web_Box.py
+├── KSC_Web_DB_Control.py
+├── KSC_Web_DB_Control_2.py
+├── KSC_Web_Introduce.py
+├── KSC_Web_Main_New.py
+├── KSC_Web_MyPage.py
+├── KSC_Web_Notice.py
+├── KSC_Web_Post.py
+├── KSC_Web_Sign_InUp.py
+├── instance
+├── migrations
+├── static                    # 정적 파일 (CSS, JavaScript, 이미지 등)
+└── templates                 # HTML 템플릿 파일
 ```
+
+
 
 ## 데이터베이스 모델 구조
 1. **User 테이블**
