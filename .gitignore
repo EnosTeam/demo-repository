@@ -1,3 +1,8 @@
 .idea/
 index.html
 package.json
+FlaskApp_6/migrations
+FlaskApp_6/__pycache__
+FlaskApp_6/DataBase/__pycache__
+FlaskApp_3/__pycache__
+FlaskApp_3/DataBase/__pycache__
